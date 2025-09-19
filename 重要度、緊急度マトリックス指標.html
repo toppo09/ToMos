@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間管理マトリックス・インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-line {
+            width: 2px;
+            background-color: #9CA3AF;
+            margin: 0 auto;
+            height: 3rem;
+        }
+        .flow-dot {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            background-color: #4ECDC4;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center py-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">時間管理マトリックス</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">緊急度と重要度でタスクを整理し、本当に価値ある活動に集中するための究極ガイド</p>
+        </header>
+
+        <main>
+            <section id="matrix" class="py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">4つの領域</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">全てのタスクは、以下の4つの領域のいずれかに分類されます。自分がどの領域に時間を費やしているか把握することが、生産性向上の第一歩です。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-red-500">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🔥</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-red-600">第1領域：重要度 高 × 緊急度 高</h3>
+                                <p class="font-bold text-gray-700">すぐやるべきこと</p>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-gray-600">放置すると深刻な問題に発展するタスク。危機や問題への対処が中心です。</p>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <p class="font-semibold mb-2">例：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>クレーム対応</li>
+                                <li>システムの重大なバグ修正</li>
+                                <li>締切が迫っている重要なタスク</li>
+                                <li>病気や怪我の治療</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="font-bold text-gray-800">対処法：</h4>
+                            <p class="text-gray-600">今すぐ最優先で取り掛かります。この領域のタスクを減らすことが、ストレス軽減の鍵です。</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-teal-500">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">⭐</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-teal-600">第2領域：重要度 高 × 緊急度 低</h3>
+                                <p class="font-bold text-gray-700">計画してやるべきこと</p>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-gray-600">自己投資や将来の目標達成に直結する、最も重要な領域です。</p>
+                        <div class="bg-teal-50 p-4 rounded-lg">
+                            <p class="font-semibold mb-2">例：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>新しいスキルの学習</li>
+                                <li>キャリアプランの設計</li>
+                                <li>健康のための運動習慣</li>
+                                <li>家族や友人との大切な時間</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="font-bold text-gray-800">対処法：</h4>
+                            <p class="text-gray-600">スケジュールに組み込み、実行時間を確保します。長期的な成功は、この領域への投資で決まります。</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-yellow-500">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">💨</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-yellow-600">第3領域：重要度 低 × 緊急度 高</h3>
+                                <p class="font-bold text-gray-700">人に頼む・断るべきこと</p>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-gray-600">自分にとっては重要でないが、緊急に見えるタスク。他人の予定に振り回されがちです。</p>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <p class="font-semibold mb-2">例：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>突然の依頼</li>
+                                <li>多くの電話やメールへの即時対応</li>
+                                <li>目的の不明な会議</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="font-bold text-gray-800">対処法：</h4>
+                            <p class="text-gray-600">可能であれば他者に任せる、丁寧にお断りする、または短時間で処理する方法を考えます。</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-gray-400">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🗑️</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-500">第4領域：重要度 低 × 緊急度 低</h3>
+                                <p class="font-bold text-gray-700">やめるべきこと</p>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-gray-600">単なる暇つぶしや現実逃避。あなたの目標達成には繋がりません。</p>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="font-semibold mb-2">例：</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>目的のないネットサーフィン</li>
+                                <li>長時間のテレビ</li>
+                                <li>噂話、愚痴</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="font-bold text-gray-800">対処法：</h4>
+                            <p class="text-gray-600">意識的にやめるか、時間を区切ります。この時間を第2領域に投資しましょう。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="focus" class="py-16 bg-white rounded-xl shadow-lg">
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl font-bold mb-4">理想的な時間の使い方</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">多くの人は緊急性の高いタスクに追われがちですが、成功する人は意識的に第2領域の時間を増やしています。以下のグラフは、典型的な時間の使い方と、生産性の高い理想的な使い方を比較したものです。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-4">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-4">典型的（反応的）な時間配分</h3>
+                        <div class="chart-container">
+                            <canvas id="typicalTimeChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-gray-600">第1領域と第3領域の緊急タスクに大半の時間を費やしている状態。</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-4">理想的（主体的）な時間配分</h3>
+                        <div class="chart-container">
+                            <canvas id="idealTimeChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-gray-600">第2領域に最も多くの時間を投資し、長期的な目標達成に向けて行動している状態。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-to" class="py-16">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">マトリックスの効果的な使い方</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">以下の3つのステップを習慣にすることで、常に自分が本当にやるべきことに集中できるようになります。週に一度の見直しがおすすめです。</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="flex flex-col items-center">
+                        
+                        <div class="flex w-full items-center">
+                            <div class="w-1/3 text-right pr-8">
+                                <h3 class="text-2xl font-bold text-teal-600">Step 1</h3>
+                            </div>
+                            <div class="w-1/6 flex justify-center">
+                                <div class="flow-dot">1</div>
+                            </div>
+                             <div class="w-1/2 pl-4">
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <h4 class="font-bold">書き出す</h4>
+                                    <p class="text-sm text-gray-600">抱えているタスクや「やること」を全てリストアップします。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-1/6 flex justify-center">
+                             <div class="flow-line"></div>
+                        </div>
+
+                        <div class="flex w-full items-center">
+                             <div class="w-1/3 text-right pr-8">
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <h4 class="font-bold">分類する</h4>
+                                    <p class="text-sm text-gray-600">各タスクが4つの領域のどこに当てはまるか分類します。</p>
+                                </div>
+                            </div>
+                            <div class="w-1/6 flex justify-center">
+                                 <div class="flow-dot">2</div>
+                            </div>
+                             <div class="w-1/2 pl-4">
+                               <h3 class="text-2xl font-bold text-teal-600">Step 2</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-1/6 flex justify-center">
+                             <div class="flow-line"></div>
+                        </div>
+
+                        <div class="flex w-full items-center">
+                             <div class="w-1/3 text-right pr-8">
+                                <h3 class="text-2xl font-bold text-teal-600">Step 3</h3>
+                            </div>
+                            <div class="w-1/6 flex justify-center">
+                                 <div class="flow-dot">3</div>
+                            </div>
+                             <div class="w-1/2 pl-4">
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <h4 class="font-bold">行動計画を立てる</h4>
+                                    <p class="text-sm text-gray-600">第1は即実行、第2は計画、第3は削減、第4はやめる、と行動を決めます。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 mt-12 border-t">
+            <p class="text-gray-600">このマトリックスを定期的に見直し、生産性の高い毎日を送りましょう。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chartColors = {
+                q1: '#FF6B6B',
+                q2: '#4ECDC4',
+                q3: '#FED766',
+                q4: '#CCCCCC'
+            };
+
+            const commonChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            function wrapLabels(labels, maxLength) {
+                return labels.map(label => {
+                    if (label.length <= maxLength) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > maxLength) {
+                            lines.push(currentLine.trim());
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    if (currentLine) {
+                        lines.push(currentLine.trim());
+                    }
+                    return lines;
+                });
+            }
+
+            const typicalTimeCtx = document.getElementById('typicalTimeChart').getContext('2d');
+            new Chart(typicalTimeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['第1領域 (緊急)', '第2領域 (重要)', '第3領域 (割り込み)', '第4領域 (無駄)'],
+                    datasets: [{
+                        label: '時間配分',
+                        data: [40, 20, 30, 10],
+                        backgroundColor: [chartColors.q1, chartColors.q2, chartColors.q3, chartColors.q4],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: commonChartOptions
+            });
+
+            const idealTimeCtx = document.getElementById('idealTimeChart').getContext('2d');
+            new Chart(idealTimeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['第1領域 (緊急)', '第2領域 (重要)', '第3領域 (割り込み)', '第4領域 (無駄)'],
+                    datasets: [{
+                        label: '時間配分',
+                        data: [15, 65, 15, 5],
+                        backgroundColor: [chartColors.q1, chartColors.q2, chartColors.q3, chartColors.q4],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: commonChartOptions
+            });
+        });
+    </script>
+</body>
+</html>

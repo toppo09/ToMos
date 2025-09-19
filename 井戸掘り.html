@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スキル習得という名の井戸掘り</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #6C757D;
+            margin: 0 1rem;
+        }
+        .flow-arrow:last-child::after {
+            content: '';
+        }
+         .big-number {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-[#1A202C]">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#007BFF] mb-4">スキル習得という名の「井戸掘り」</h1>
+            <p class="text-lg md:text-xl text-[#6C757D]">物語が教える、本当の価値を手に入れるための道筋</p>
+        </header>
+
+        <main>
+            <section id="intro" class="bg-white rounded-lg shadow-md p-8 mb-12 text-center">
+                <h2 class="text-3xl font-bold mb-4">乾いた大地に立つ、二人の旅人</h2>
+                <p class="max-w-3xl mx-auto text-lg">喉の渇きを潤す「水」を、現代の私たちが求める「スキル」や「成功」に置き換えてみましょう。ある者はすぐに結果が出る浅い場所を探し続け、ある者は一つの可能性を信じて深く掘り進めます。あなたは、どちらの旅人ですか？</p>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <section id="traveler1" class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#6C757D]">旅人A：楽な道を求める者</h3>
+                    <p class="mb-6">すぐに結果が出そうな場所を見つけては、少し掘って諦める。この繰り返しは、短期的には小さな「発見」があるように見えますが、持続的な価値には繋がりません。</p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-lg mb-2 text-center">行動パターン：浅い穴掘りの罠</h4>
+                        <div class="flex flex-wrap justify-center items-center text-center">
+                            <div class="p-2 bg-gray-100 rounded-md m-1 flow-arrow">探す</div>
+                            <div class="p-2 bg-gray-100 rounded-md m-1 flow-arrow">少し掘る</div>
+                            <div class="p-2 bg-yellow-100 rounded-md m-1 flow-arrow">僅かな水</div>
+                            <div class="p-2 bg-red-100 rounded-md m-1">枯渇・諦め</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <h4 class="font-bold text-lg mb-2">得られた成果</h4>
+                        <p class="text-[#6C757D] big-number">1.5</p>
+                        <p>一時的な潤い（最大値）</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg mb-4 text-center">努力と成果の推移</h4>
+                        <div class="chart-container">
+                            <canvas id="traveler1Chart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-sm text-gray-600">労力は散発的で、成果は一瞬で消え去る。</p>
+                    </div>
+                </section>
+
+                <section id="traveler2" class="bg-white rounded-lg shadow-md p-6 border-2 border-[#007BFF]">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#007BFF]">旅人B：本質を求める者</h3>
+                    <p class="mb-6">一つの場所を信じ、地道に掘り続ける。成果が見えない期間は長く、困難な「岩盤」にもぶつかりますが、その先には尽きることのない価値が眠っています。</p>
+
+                     <div class="mb-8">
+                        <h4 class="font-bold text-lg mb-2 text-center">行動パターン：深く掘り続ける力</h4>
+                        <div class="flex flex-wrap justify-center items-center text-center">
+                            <div class="p-2 bg-blue-50 rounded-md m-1 flow-arrow">信じる</div>
+                            <div class="p-2 bg-blue-50 rounded-md m-1 flow-arrow">深く掘る</div>
+                            <div class="p-2 bg-gray-200 rounded-md m-1 flow-arrow">岩盤（壁）</div>
+                            <div class="p-2 bg-blue-100 rounded-md m-1">突破・水脈</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <h4 class="font-bold text-lg mb-2">得られた成果</h4>
+                        <p class="text-[#007BFF] big-number">100+</p>
+                        <p>尽きない価値（指数関数的成長）</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg mb-4 text-center">努力と成果の推移</h4>
+                        <div class="chart-container">
+                            <canvas id="traveler2Chart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-sm text-gray-600">長い停滞期間の後、成果は爆発的に増加する。</p>
+                    </div>
+                </section>
+            </div>
+
+            <section id="comparison" class="bg-white rounded-lg shadow-md p-8 my-12">
+                <h2 class="text-3xl font-bold text-center mb-8">二人の旅人の結末</h2>
+                <p class="max-w-3xl mx-auto text-center mb-8">費やした労力の総量は同じでも、その「使い方」が最終的な結果に決定的な差を生み出します。分散させるか、集中させるか。その選択が未来を分けます。</p>
+                <div class="chart-container h-[400px] md:h-[450px]">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="conclusion" class="text-center">
+                <h2 class="text-3xl font-bold mb-4">物語が教える3つの真実</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-4xl mb-4">①</div>
+                        <h3 class="text-xl font-bold mb-2">近道はない</h3>
+                        <p>本当のスキルは、一夜にしてならず。地道な積み重ねが、揺るぎない土台を築きます。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                         <div class="text-4xl mb-4">②</div>
+                        <h3 class="text-xl font-bold mb-2">壁の先にこそ価値がある</h3>
+                        <p>成長の過程で必ずぶつかる困難な「岩盤」。それを乗り越えた時、初めて本物の力が手に入ります。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                         <div class="text-4xl mb-4">③</div>
+                        <h3 class="text-xl font-bold mb-2">価値は他者への貢献に</h3>
+                        <p>掘り当てた「水脈」は自分を潤すだけでなく、周りの人々をも豊かにします。それこそが真の成功です。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-500">
+            <p>このインフォグラフィックは、地道な努力の重要性を説く物語を基に作成されました。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const processLabel = (label) => {
+                if (label.length <= 16) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    }
+                }
+            };
+
+            const traveler1Ctx = document.getElementById('traveler1Chart').getContext('2d');
+            new Chart(traveler1Ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1週目', '2週目', '3週目', '4週目', '5週目', '6週目', '7週目', '8週目'],
+                    datasets: [{
+                        label: '得られた成果',
+                        data: [1, 0, 1.5, 0, 0.5, 0, 1.2, 0],
+                        borderColor: '#FFC107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: sharedChartOptions
+            });
+
+            const traveler2Ctx = document.getElementById('traveler2Chart').getContext('2d');
+            new Chart(traveler2Ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1ヶ月目', '2ヶ月目', '3ヶ月目', '4ヶ月目', '5ヶ月目', '6ヶ月目', '7ヶ月目', '8ヶ月目'],
+                    datasets: [{
+                        label: '得られた成果',
+                        data: [0, 0, 0, 0.1, 0.5, 5, 50, 120],
+                        borderColor: '#007BFF',
+                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        fill: 'start',
+                        tension: 0.4
+                    }]
+                },
+                options: sharedChartOptions
+            });
+
+            const comparisonLabels = [
+                '得られた価値の総量（単位なし）',
+                '価値を生んだ集中時間（単位なし）',
+                '他者への貢献度（単位なし）'
+            ].map(processLabel);
+
+            const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+            new Chart(comparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: comparisonLabels,
+                    datasets: [
+                        {
+                            label: '旅人A：楽な道を求める者',
+                            data: [10, 80, 5],
+                            backgroundColor: '#6C757D',
+                            borderColor: '#6C757D',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '旅人B：本質を求める者',
+                            data: [100, 40, 95],
+                            backgroundColor: '#007BFF',
+                            borderColor: '#007BFF',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                             labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '相対的スコア'
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                         x: {
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans JP', sans-serif",
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
